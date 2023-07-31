@@ -1,5 +1,5 @@
 package example0731;
 
 public interface OnTakeout {
-    void successTakeout();
+    void successTakeout(int time, String menu);
 }

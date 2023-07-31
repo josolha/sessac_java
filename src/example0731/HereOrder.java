@@ -31,7 +31,6 @@ public class HereOrder extends Order {
     }
 
     public void successHere() {
-        System.out.print(orderNum+" 주문번호로 "+super.orderMenu);
-        onHere.successHere();
+        onHere.successHere(this.orderNum, super.orderMenu);
     }
 }

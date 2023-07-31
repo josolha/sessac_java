@@ -31,7 +31,6 @@ public class TakeoutOrder extends Order {
     }
 
     public void successTakeout() {
-        System.out.print(time+" 분뒤 "+super.orderMenu);
-        onTakeout.successTakeout();
+        onTakeout.successTakeout(this.time,super.orderMenu);
     }
 }

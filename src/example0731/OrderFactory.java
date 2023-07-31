@@ -15,15 +15,15 @@ public class OrderFactory implements OnHere, OnTakeout, OnDelivery {
         }
     }
     @Override
-    public void successHere() {
-        System.out.println(" 주문 완료되었습니다.");
+    public void successHere(int orderNum, String menu) {
+        System.out.print(orderNum+" 주문번호로 "+menu+" 주문 완료 되었습니다");
     }
     @Override
-    public void successDelivery() {
-        System.out.println(" 배달 주문이 완료했습니다.");
+    public void successDelivery(String locate, String menu ) {
+        System.out.println(locate+" 주소로"+menu+" 배달 주문이 완료했습니다.");
     }
     @Override
-    public void successTakeout() {
-        System.out.println(" 포장주문 완료되었습니다.");
+    public void successTakeout(int time, String menu) {
+        System.out.println(time+" 분뒤 "+menu+" 포장주문 완료되었습니다.");
     }
 }

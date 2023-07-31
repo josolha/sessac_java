@@ -27,8 +27,7 @@ public class DeliveryOrder extends Order{
     }
 
     public void successDelivery() {
-        System.out.print(locate+" 주소로 "+super.orderMenu);
-        onDelivery.successDelivery();
+        onDelivery.successDelivery(this.locate,super.orderMenu);
     }
 
 }
