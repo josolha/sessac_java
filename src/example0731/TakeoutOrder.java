@@ -26,7 +26,7 @@ public class TakeoutOrder extends Order implements OnTakeout{
         this.time = time;
     }
 
-  /*  public int getTime() {
+    /*  public int getTime() {
         return time;
     }*/
 

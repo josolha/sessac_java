@@ -7,12 +7,9 @@ public class Kiosk {
     private int inventory;
     private final Map<String,Integer> orderHashMap;
 
-    private OrderFactory orderFactory;
-
     public Kiosk(int inventory) {
 
         this.inventory = inventory;
-
         orderHashMap = new HashMap<>();
         orderHashMap.put("딸기요거트", 4500);
         orderHashMap.put("밀크티", 3500);
@@ -27,7 +24,7 @@ public class Kiosk {
         }else {
             return null;
         }
-        orderFactory = new OrderFactory();
+        OrderFactory orderFactory = new OrderFactory();
         return orderFactory.createOrder(type, menu, initCnt, price);
     }
 

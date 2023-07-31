@@ -7,17 +7,15 @@ import java.util.Scanner;
 public class RunKiosk {
 
     static Scanner sc = new Scanner(System.in);
-    static private Kiosk kiosk;
-    static private Map<Integer, String> inputToOrderType;
 
     public static void main(String[] args) {
 
         System.out.println("매장 재고개수를 입력해주세요");
         int storeCnt = sc.nextInt();
 
-        kiosk = new Kiosk(storeCnt);
+        Kiosk kiosk = new Kiosk(storeCnt);
 
-        inputToOrderType = new HashMap<>();
+        Map<Integer, String> inputToOrderType = new HashMap<>();
         inputToOrderType.put(1, "Delivery");
         inputToOrderType.put(2, "TakeoutOrder");
         inputToOrderType.put(3, "HereOrder");

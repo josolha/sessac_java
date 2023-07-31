@@ -2,7 +2,7 @@ package example0731;
 
 public class HereOrder extends Order implements OnHere{
 
-    int orderNum;
+    private int orderNum;
 
     private final OnHere onHere;
 
