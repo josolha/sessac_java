@@ -4,7 +4,7 @@ public class HereOrder extends Order implements OnHere{
 
     int orderNum;
 
-    public OnHere onHere;
+    private final OnHere onHere;
 
     public HereOrder(String menu, int orderCnt, int orderPrice,OnHere onHere) {
         super(menu, orderCnt, orderPrice);
@@ -25,13 +25,9 @@ public class HereOrder extends Order implements OnHere{
         this.orderNum = orderNum;
     }
 
-    public void setOnHere(OnHere onHere) {
-        this.onHere = onHere;
-    }
-
-    public int getOrderNum() {
+   /* public int getOrderNum() {
         return orderNum;
-    }
+    }*/
 
     @Override
     public void successHere() {

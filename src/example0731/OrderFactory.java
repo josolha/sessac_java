@@ -5,14 +5,11 @@ public class OrderFactory implements OnHere, OnTakeout, OnDelivery {
     public Order createOrder(String type, String menu, int count, int price) {
         switch (type) {
             case "Delivery":
-                DeliveryOrder deliveryOrder = new DeliveryOrder(menu, count, price, this);
-                return deliveryOrder;
+                return new DeliveryOrder(menu, count, price, this);
             case "HereOrder":
-                HereOrder hereOrder = new HereOrder(menu, count, price, this);
-                return hereOrder;
+                return new HereOrder(menu, count, price, this);
             case "TakeoutOrder":
-                TakeoutOrder takeoutOrder = new TakeoutOrder(menu, count, price, this);
-                return takeoutOrder;
+                return new TakeoutOrder(menu, count, price, this);
             default:
                 return null;
         }

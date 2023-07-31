@@ -5,7 +5,7 @@ public class TakeoutOrder extends Order implements OnTakeout{
     private int time;
 
     private static final int TAKEOUT_FEE = 500;
-    public OnTakeout onTakeout;
+    private final OnTakeout onTakeout;
 
     public TakeoutOrder(String menu, int orderCnt, int orderPrice, OnTakeout takeout) {
         super(menu, orderCnt, orderPrice);
@@ -22,17 +22,13 @@ public class TakeoutOrder extends Order implements OnTakeout{
         return paymentAmount >= super.totalPrice;
     }
 
-    public void setOnTakeout(OnTakeout onTakeout) {
-        this.onTakeout = onTakeout;
-    }
-
     public void setTime(int time) {
         this.time = time;
     }
 
-    public int getTime() {
+  /*  public int getTime() {
         return time;
-    }
+    }*/
 
     @Override
     public void successTakeout() {

@@ -2,7 +2,7 @@ package example0731;
 
 public class DeliveryOrder extends Order implements OnDelivery{
 
-    public OnDelivery onDelivery;
+    private final OnDelivery onDelivery;
     private static final int DELIVERY_FEE = 3000;
 
     protected String locate;
