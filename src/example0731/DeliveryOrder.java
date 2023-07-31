@@ -1,6 +1,6 @@
 package example0731;
 
-public class DeliveryOrder extends Order implements OnDelivery{
+public class DeliveryOrder extends Order{
 
     private final OnDelivery onDelivery;
     private static final int DELIVERY_FEE = 3000;
@@ -26,10 +26,10 @@ public class DeliveryOrder extends Order implements OnDelivery{
         return locate;
     }
 
-    @Override
     public void successDelivery() {
         System.out.print(locate+" 주소로 "+super.orderMenu);
         onDelivery.successDelivery();
     }
+
 }
 

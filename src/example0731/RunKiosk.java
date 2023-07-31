@@ -50,6 +50,15 @@ public class RunKiosk {
                     ((DeliveryOrder) orderService).setLocate(userAddress);
                     ((DeliveryOrder) orderService).successDelivery();
                     kiosk.subInventory(count);
+
+                    //Data체킹
+                    System.out.println("\n========DeliveryOrder=========");
+                    System.out.println("주문음료 = "+orderService.getOrderMenu());
+                    System.out.println("주문개수 = "+orderService.getOrderCnt());
+                    System.out.println("총 주문가격 = "+orderService.getTotalPrice());
+                    System.out.println("배달주소= "+((DeliveryOrder) orderService).getLocate());
+                    System.out.println("=============================\n");
+
                 }else {
                     System.out.println("정확한 금액을 결제 부탁드립니다.");
                 }
@@ -69,6 +78,15 @@ public class RunKiosk {
                                     + "원 입니다.");
                     ((TakeoutOrder) orderService).successTakeout();
                     kiosk.subInventory(count);
+
+                    //Data체킹
+                    System.out.println("\n========TakeoutOrder=========");
+                    System.out.println("주문음료 = "+orderService.getOrderMenu());
+                    System.out.println("주문개수 = "+orderService.getOrderCnt());
+                    System.out.println("총 주문가격 = "+orderService.getTotalPrice());
+                    System.out.println("주문시간= "+((TakeoutOrder) orderService).getTime());
+                    System.out.println("=============================\n");
+
                 }else{
                     System.out.println("금액이 부족합니다.");
                 }
@@ -87,8 +105,17 @@ public class RunKiosk {
                             + "원 입니다.");
                     ((HereOrder)orderService).successHere();
                     kiosk.subInventory(count);
+
+                    //Data체킹
+                    System.out.println("\n========HereOrder=========");
+                    System.out.println("주문음료 = "+orderService.getOrderMenu());
+                    System.out.println("주문개수 = "+orderService.getOrderCnt());
+                    System.out.println("총 주문가격 = "+orderService.getTotalPrice());
+                    System.out.println("주문번호= "+((HereOrder) orderService).getOrderNum());
+                    System.out.println("=============================\n");
+
                 }else{
-                    System.out.println("주문번호가 틀렸습니다.");
+                    System.out.println("금액이 부족합니다.");
                 }
             }
 

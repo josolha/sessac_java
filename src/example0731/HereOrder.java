@@ -1,6 +1,6 @@
 package example0731;
 
-public class HereOrder extends Order implements OnHere{
+public class HereOrder extends Order {
 
     private int orderNum;
 
@@ -25,11 +25,11 @@ public class HereOrder extends Order implements OnHere{
         this.orderNum = orderNum;
     }
 
-   /* public int getOrderNum() {
-        return orderNum;
-    }*/
 
-    @Override
+   public int getOrderNum() {
+        return orderNum;
+    }
+
     public void successHere() {
         System.out.print(orderNum+" 주문번호로 "+super.orderMenu);
         onHere.successHere();

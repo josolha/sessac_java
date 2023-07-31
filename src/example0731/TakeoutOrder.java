@@ -1,6 +1,6 @@
 package example0731;
 
-public class TakeoutOrder extends Order implements OnTakeout{
+public class TakeoutOrder extends Order {
 
     private int time;
 
@@ -26,11 +26,10 @@ public class TakeoutOrder extends Order implements OnTakeout{
         this.time = time;
     }
 
-    /*  public int getTime() {
+     public int getTime() {
         return time;
-    }*/
+    }
 
-    @Override
     public void successTakeout() {
         System.out.print(time+" 분뒤 "+super.orderMenu);
         onTakeout.successTakeout();
