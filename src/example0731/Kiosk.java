@@ -1,5 +1,7 @@
 package example0731;
 
+import example0731.CustomException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,19 +19,22 @@ public class Kiosk {
         orderHashMap.put("아메리카노", 2000);
     }
 
-    public Order initOrder (String type, String menu, int initCnt){
+    public Order initOrder (String type, String menu, int initCnt) throws CustomException{
         int price = 0;
         if(orderHashMap.containsKey(menu)) {
             price = orderHashMap.get(menu);
         }else {
-            return null;
+            throw new CustomException("메뉴가 없습니다",101);
         }
         OrderFactory orderFactory = new OrderFactory();
         return orderFactory.createOrder(type, menu, initCnt, price);
     }
 
-    public boolean isInventory(int count) {
-        return inventory >= count;
+    public boolean isInventory(int count) throws CustomException {
+        if(inventory<count){
+         throw new CustomException("재고가 부족합니다",102);
+        }
+        return true;
     }
 
     public void subInventory(int count) {
