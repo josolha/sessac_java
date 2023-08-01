@@ -13,9 +13,10 @@ public class Main{
         UseInterFace useInterFace = new UseInterFace() {
             @Override
             public void printMessage() {
-                System.out.println("구현체를 사용하지 않고 오버라이드");
+                System.out.println("구현체를 사용하지 오버라이드");
             }
         };
+
         System.out.println("++++++직접호출++++++");
         useInterFace.printMessage();
         System.out.println();
@@ -41,7 +42,7 @@ public class Main{
             //UseInterFaceInjection 객체를 생성하면서, 위에서 생성한 useInterFace3, userInterFace4 객체를 생성자를 통해 주입
             //이렇게하면 UseInterFaceInjection는 userInterFace 추상화에 의존하게 됨으로써 개방-폐쇠 원칙(OCP)을 지킴
             //UseInterFaceInjection uj = new UseInterFaceInjection(useInterFace3);
-            UseInterFaceInjection uj = new UseInterFaceInjection(useInterFace4);
+            UseInterFaceInjection uj = new UseInterFaceInjection(useInterFace3);
 
             // uj 객체에서 printMessage 메소드를 호출.
             // 이 메소드 내부에서는 useInterFace3 or userInterFace4 객체의 printMessage가 호출됨
@@ -71,6 +72,8 @@ public class Main{
             // 아직 의존성이 주입되지 않았으므로, 이 시점에서 printMessage를 호출하면 문제가 발생한다.
             uj3.setUseInterFace(useInterFace6); // setter를 통해 의존성 주입
             uj3.printMessage();
+
+            //참고로 필드, 메소드 주입도 좋지는 않음.
 
     }
 
