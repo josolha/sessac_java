@@ -8,49 +8,54 @@ public class Labber {
 
     static Scanner sc = new Scanner(System.in);
     static Random random = new Random();
+
+
     public static void main(String[] args) {
 
+        System.out.println("플레이수와 사다리 층수를 입력해 주세요");
+        int playerCnt =  sc.nextInt();
+        int layerCnt = sc.nextInt();
 
-        int playerNum =  sc.nextInt();
-        int layer = sc.nextInt();
-        int[] makeLayerNum = new int[playerNum];
-        int[][] twoDimensionalArray = new int[layer][];
-
-        for (int i = 0; i < layer; i++) {
-            twoDimensionalArray[i] = extracted(makeLayerNum, true);
-            System.out.println(Arrays.toString(twoDimensionalArray[i]));
+        System.out.println("플레이어수 만큼 등수를 정해주세요");
+        int[] playerRank = new int[playerCnt];
+        for (int i = 0; i < playerRank.length ; i++) {
+            playerRank[i] = sc.nextInt();
         }
 
-//        for (int i = 0; i < layer ; i++) {
-//            for (int j = 0; j < playerNum; j++) {
-//                System.out.print(twoDimensionalArray[i][j]);
-//            }
-//            System.out.println();
-//        }
+        int[][] labber = new int[layerCnt][];
 
-        int i=0;
-        int j=0;
-        while(i< layer-1) {
-            if (twoDimensionalArray[i][j] == 0) {
-                i++;
-                System.out.println(twoDimensionalArray[i][j]);
-            }
-            else if (twoDimensionalArray[i][j] == 1) {
-                i++;
-                j++;
-                System.out.println(twoDimensionalArray[i][j]);
 
-            }
-            else if (twoDimensionalArray[i][j] == 2) {
-                i++;
-                j--;
-                System.out.println(twoDimensionalArray[i][j]);
-            }
+        for (int i = 0; i < layerCnt; i++) {
+            labber[i] = makeOneLayer(playerCnt);
+            System.out.println(Arrays.toString(labber[i]));
         }
-        System.out.println("등수는 = "+(j+1));
+        for (int k = 0; k < playerCnt ; k++) {
+            int i=k;
+            int j=0;
+            while(i< layerCnt-1) {
+                if (labber[i][j] == 0) {
+                    i++;
+                    System.out.println(labber[i][j]);
+                }
+                else if (labber[i][j] == 1) {
+                    i++;
+                    j++;
+                    System.out.println(labber[i][j]);
+
+                }
+                else if (labber[i][j] == 2) {
+                    i++;
+                    j--;
+                    System.out.println(labber[i][j]);
+                }
+            }
+            System.out.println("등수는 = "+(j+1));
+            System.out.println(k+"번째 플레이어의 등수는 = " +  playerRank[k]);
+        }
     }
-    private static int[] extracted(int[] inputArray, boolean flag) {
-        int[] makeLayerNum = Arrays.copyOf(inputArray, inputArray.length); // make a copy of the input array
+    private static int[] makeOneLayer(int playerCnt) {
+        int[] makeLayerNum = new int[playerCnt];
+        boolean flag = true;
         while(flag) {
             int oneCnt = 0;
             int twoCnt = 0;
@@ -74,5 +79,4 @@ public class Labber {
         }
         return makeLayerNum;
     }
-
 }
