@@ -32,18 +32,19 @@ public class Labber {
         int j=0;
         while(i< layer-1) {
             if (twoDimensionalArray[i][j] == 0) {
-                System.out.println(twoDimensionalArray[i][j]);
                 i++;
+                System.out.println(twoDimensionalArray[i][j]);
             }
             else if (twoDimensionalArray[i][j] == 1) {
-                System.out.println(twoDimensionalArray[i][j]);
                 i++;
                 j++;
+                System.out.println(twoDimensionalArray[i][j]);
+
             }
             else if (twoDimensionalArray[i][j] == 2) {
-                System.out.println(twoDimensionalArray[i][j]);
                 i++;
                 j--;
+                System.out.println(twoDimensionalArray[i][j]);
             }
         }
         System.out.println("등수는 = "+(j+1));
