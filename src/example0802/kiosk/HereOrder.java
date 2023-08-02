@@ -1,19 +1,23 @@
-package example0801.kiosk;
+package example0802.kiosk;
 
+import lombok.Builder;
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
 public class HereOrder extends Order {
 
     private int orderNum;
 
     private final OnHere onHere;
 
-    public HereOrder(Menu[] menu, int orderCnt, int orderPrice, OnHere onHere) {
-        super(menu, orderCnt, orderPrice);
-        this.onHere = onHere;
-    }
+//    public HereOrder(Menu[] menu, int orderCnt, int orderPrice, OnHere onHere) {
+//        super(menu, orderCnt, orderPrice);
+//        this.onHere = onHere;
+//    }
 
     @Override
-    int calculateTotalPrice() {
-        return super.orderCnt * super.unitPrice;
+    void calculateTotalPrice() {
+        super.calculateTotalPrice();
     }
 
     @Override

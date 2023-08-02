@@ -1,4 +1,4 @@
-package example0801.kiosk;
+package example0802.kiosk;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ public class Menu {
     private String menu;
 
     public Menu(String menu) throws CustomException{
+        this.menu = menu;
 
         Map<String,Integer> orderHashMap = new HashMap<>();
         orderHashMap.put("딸기요거트", 4500);
@@ -21,5 +22,10 @@ public class Menu {
         }else {
             throw new CustomException("메뉴가 없습니다",101);
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.menu;
     }
 }

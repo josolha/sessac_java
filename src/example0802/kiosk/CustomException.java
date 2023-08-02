@@ -1,4 +1,4 @@
-package example0801.kiosk;
+package example0802.kiosk;
 
 public class CustomException extends Exception{
     public int code;
