@@ -1,4 +1,4 @@
-package example0802.kiosk.labber;
+package example0802.labber;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -80,27 +80,11 @@ public class Labber {
 
     private static int[] makeOneLayer(int playerCnt) {
         int[] makeLayerNum = new int[playerCnt];
-        boolean flag = true;
 
-        while(flag) {
-            int oneCnt = 0;
-            int twoCnt = 0;
+        int number = random.nextInt(playerCnt-1);
+        makeLayerNum[number] = 1;
+        makeLayerNum[number+1] = 2;
 
-            for (int i = 0; i < makeLayerNum.length; i++) {
-                makeLayerNum[i] = random.nextInt(3);
-                if(makeLayerNum[i] ==1){
-                    oneCnt++;
-                }else if(makeLayerNum[i]==2){
-                    twoCnt++;
-                }
-            }
-            for (int i = 0; i < makeLayerNum.length -1; i++) {
-                if (makeLayerNum[i] == 1 && makeLayerNum[i + 1] == 2 && oneCnt==1 && twoCnt==1 ) {
-                    flag = false;
-                    break;
-                }
-            }
-        }
         return makeLayerNum;
     }
 
