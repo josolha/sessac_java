@@ -4,23 +4,22 @@ package example0802.kiosk;
 import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+
 public class DeliveryOrder extends Order {
 
     private final OnDelivery onDelivery;
-    private static final int DELIVERY_FEE = 3000;
+    private int deliveryFee = 3000;
     protected String locate;
 
-//    public DeliveryOrder(Menu[] menu, int orderPrice, OnDelivery delivery, String locate) {
-//        super(menu, orderPrice);
-//        this.onDelivery = delivery;
-//        this.locate = locate;
-//    }
+   public DeliveryOrder(Menu[] menu, OnDelivery delivery) {
+        super(menu);
+        this.onDelivery = delivery;
+    }
 
     @Override
     void calculateTotalPrice() {
         super.calculateTotalPrice();
-        super.totalPrice = super.totalPrice+ DELIVERY_FEE;
+        super.totalPrice = super.totalPrice+ deliveryFee;
     }
     @Override
     boolean runOrder(int paymentAmount) {
@@ -33,6 +32,10 @@ public class DeliveryOrder extends Order {
 
     public void setLocate(String locate) {
         this.locate = locate;
+    }
+
+    public int getDeliveryFee() {
+        return deliveryFee;
     }
 
     public void successDelivery() {

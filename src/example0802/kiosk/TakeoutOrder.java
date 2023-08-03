@@ -4,7 +4,6 @@ package example0802.kiosk;
 import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
 public class TakeoutOrder extends Order {
 
     private int time;
@@ -12,15 +11,15 @@ public class TakeoutOrder extends Order {
     private static final int TAKEOUT_FEE = 500;
     private final OnTakeout onTakeout;
 
-//    public TakeoutOrder(Menu[] menu, int orderCnt, int orderPrice, OnTakeout takeout) {
-//        super(menu, orderCnt, orderPrice);
-//        this.onTakeout = takeout;
-//    }
+    public TakeoutOrder(Menu[] menu, OnTakeout takeout) {
+        super(menu);
+        this.onTakeout = takeout;
+    }
 
     @Override
     void calculateTotalPrice() {
         super.calculateTotalPrice();
-        super.totalPrice =- TAKEOUT_FEE;
+        super.totalPrice -= TAKEOUT_FEE;
     }
 
     @Override

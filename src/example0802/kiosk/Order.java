@@ -1,22 +1,16 @@
 package example0802.kiosk;
 
-import lombok.Builder;
-import lombok.experimental.SuperBuilder;
 
 
-@SuperBuilder
+
 public abstract class Order {
 
     protected Menu[] orderMenu;
-//    protected int orderCnt;
     protected int totalPrice;
 
-
-//    public Order(Menu[] menus, int unitPrice) {
-//        this.orderMenu = menus;
-////        this.orderCnt = orderCnt;
-//        this.unitPrice = unitPrice;
-//    }
+    public Order(Menu[] menus) {
+        this.orderMenu = menus;
+    }
 
     void calculateTotalPrice(){
         int price = 0;
@@ -31,7 +25,6 @@ public abstract class Order {
     public int getTotalPrice() {
         return totalPrice;
     }
-
     public Menu[] getOrderMenu() {
         return orderMenu;
     }

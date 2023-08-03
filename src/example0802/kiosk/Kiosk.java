@@ -1,5 +1,6 @@
 package example0802.kiosk;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Kiosk implements OnHere, OnTakeout, OnDelivery {
@@ -9,12 +10,19 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
         this.inventory = inventory;
     }
 
-    public Order initOrder (OrderParameters params) throws CustomException {
-        OrderFactory orderFactory = new OrderFactory();
-        return orderFactory.createOrder(params);
+    public Order initOrder (String type, Menu[] menus)  {
+        switch (type) {
+            case "Delivery":
+                return new DeliveryOrder(menus, this);
+            case "TakeoutOrder":
+                return new TakeoutOrder(menus, this);
+            case "HereOrder":
+                return new HereOrder(menus, this);
+            default:
+                return null;
+        }
     }
     public Menu[] setMenus(List<String> menuNames) throws CustomException {
-
         Menu[] menus = new Menu[menuNames.size()];
         for (int i = 0; i < menuNames.size(); i++) {
             menus[i] = new Menu(menuNames.get(i));
@@ -33,15 +41,15 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
 
     @Override
     public void successHere(int orderNum, Menu[] menu) {
-        System.out.print(orderNum+" 주문번호로 "+menu+" 주문 완료 되었습니다");
+        System.out.print(orderNum+" 주문번호로 "+ Arrays.toString(menu).replace("[","").replace("]","") +" 주문 완료 되었습니다");
     }
     @Override
     public void successDelivery(String locate, Menu[] menu ) {
-        System.out.println(locate+" 주소로"+menu+" 배달 주문이 완료했습니다.");
+        System.out.println(locate+" 주소로"+Arrays.toString(menu).replace("[","").replace("]","")+" 배달 주문이 완료했습니다.");
     }
     @Override
     public void successTakeout(int time, Menu[] menu) {
-        System.out.println(time+" 분뒤 "+menu+" 포장주문 완료되었습니다.");
+        System.out.println(time+" 분뒤 "+Arrays.toString(menu).replace("[","").replace("]","")+" 포장주문 완료되었습니다.");
     }
 }
 
