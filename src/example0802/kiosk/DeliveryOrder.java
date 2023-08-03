@@ -1,10 +1,6 @@
 package example0802.kiosk;
 
 
-import lombok.Builder;
-import lombok.experimental.SuperBuilder;
-
-
 public class DeliveryOrder extends Order {
 
     private final OnDelivery onDelivery;

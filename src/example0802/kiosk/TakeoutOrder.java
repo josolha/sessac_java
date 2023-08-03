@@ -1,9 +1,6 @@
 package example0802.kiosk;
 
 
-import lombok.Builder;
-import lombok.experimental.SuperBuilder;
-
 public class TakeoutOrder extends Order {
 
     private int time;
