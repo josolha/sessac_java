@@ -8,6 +8,7 @@ import java.util.List;
 public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     protected Deque<String> orderWating = new LinkedList<>();
     private int inventory;
+    private static final int MAX_ORDER_WAIT_COUNT = 3;
 
     private List<Menu> menuList = new ArrayList<>();
 
@@ -64,13 +65,11 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
         System.out.println(time+" 분뒤 "+menu.toString().replace("[","").replace("]","")+" 포장주문 완료되었습니다.");
         checkWaiting("포장 : 포장 주문 하신 메뉴 나왔습니다.");
     }
-    public void checkWaiting(String a){
-        if(orderWating.size() ==3){
+    public void checkWaiting(String message){
+        if(orderWating.size() == MAX_ORDER_WAIT_COUNT){
             orderWating.poll();
-            orderWating.add(a);
-        }else{
-            orderWating.add(a);
         }
+        orderWating.add(message);
     }
 
     @Override

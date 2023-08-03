@@ -10,7 +10,6 @@ public class RunKiosk {
     private static final String MENU_MSG = "메뉴 또는 주문을 입력해주세요";
     private static final String INVALID_SERVICE_MSG = "없는 주문 서비스 입니다.";
 
-
     public static void main(String[] args) {
 
         Kiosk kiosk = new Kiosk(storeInventoryCnt());
