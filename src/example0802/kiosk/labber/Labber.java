@@ -11,23 +11,28 @@ public class Labber {
 
     public static void main(String[] args) {
 
-        //1. 플레이어 입력
+        //1. 플레이어 수 입력
         int playerCnt =  getPlayerCnt();
+
         //2. 높이 입력
         int ladderHeight = getLadderHeight();
-        //3. 순위 정하기
+
+        //3. 커스텀 순위 입력 (1번의 플레이어 수만큼)
         int[] playerRank = getPlayerRank(playerCnt);
-        //4. 다리만들기
+
+        //4. 다리만들기 (1번의 플레이어 수, 2번의 높이)
         int[][] ladder = getGenerateLadder(playerCnt,ladderHeight);
+
         //5. 플레이어 순위 출력
+        //반복 (1번의 플레이어 수 만큼) -> (3번의 완성 커스텀 순위, 4번의 완성 사다리)
         for (int i = 0; i < playerCnt ; i++) {
             getPrintPlayerRank(playerRank, ladder, i);
         }
 
         //사다리 체크
-        System.out.println("=======사다리=======");
+        System.out.println("\n======사다리======");
         printLadder(ladder);
-        System.out.println("==================");
+        System.out.println("=================");
     }
     private static int getPlayerCnt(){
         System.out.println("플레이수와 사다리 층수를 입력해 주세요");
@@ -100,9 +105,9 @@ public class Labber {
     }
 
     private static void printLadder(int[][] ladder){
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                System.out.print(ladder[i][j] + " ");
+        for (int[] lines : ladder) {
+            for (int unit : lines) {
+                System.out.print(unit + "    ");
             }
             System.out.println();
         }
