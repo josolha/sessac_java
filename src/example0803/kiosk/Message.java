@@ -11,7 +11,7 @@ public enum Message {
     Message(String message) {
         this.message =message;
     }
-    public String getMessage(){
-        return this.message;
+    public void printMessage() {
+        System.out.println(this.message);
     }
 }

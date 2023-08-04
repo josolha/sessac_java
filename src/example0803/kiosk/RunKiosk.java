@@ -23,7 +23,7 @@ public class RunKiosk {
                 }
                 Order orderService =kiosk.initOrder(type);
                 if(orderService ==null){
-                    System.out.println(Message.INVALID_SERVICE_MSG);
+                    Message.INVALID_SERVICE_MSG.printMessage();
                     break;
                 }
                 handleOrderType(type,orderService);
@@ -139,7 +139,7 @@ public class RunKiosk {
     private static void getUserMenus(Kiosk kiosk) throws CustomException {
 
         while(true){
-            System.out.println(Message.MENU_MSG);
+            Message.MENU_MSG.printMessage();
             String menu = sc.next();
             if(menu.equals("주문")) break;
             if(kiosk.getMenusSize()==10){
@@ -148,11 +148,10 @@ public class RunKiosk {
             }
             kiosk.addMenus(menu);
         }
-
     }
 
     private static String orderType() {
-        System.out.println(Message.ORDER_TYPE_MSG);
+        Message.ORDER_TYPE_MSG.printMessage();
 
         Map<Integer, String> orderType = new HashMap<>();
         orderType.put(1, "Delivery");
@@ -165,7 +164,7 @@ public class RunKiosk {
     }
 
     private static int storeInventoryCnt() {
-        System.out.println(Message.INVENTORY_MSG);
+        Message.INVENTORY_MSG.printMessage();
         return sc.nextInt();
     }
 }
