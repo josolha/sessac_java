@@ -86,7 +86,7 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
         System.out.println(
                 "\n------------------------" +
                 "\n주문하신 "+ menu.size() +"메뉴 " +
-                "\n포장 : 포장 주문 하신 메뉴 나왔습니다."+
+                "\n포장 : "+time+"이 지나 포장 주문 하신 메뉴 나왔습니다."+
                 "\n------------------------ ");
     }
      public void printWaitOver(){

@@ -6,7 +6,7 @@ import java.util.Map;
 public class Menu {
 
     public int price;
-    private String menu;
+    private final String menu;
 
     public Menu(String menu) throws CustomException {
         this.menu = menu;
@@ -23,7 +23,6 @@ public class Menu {
             throw new CustomException("메뉴가 없습니다",101);
         }
     }
-
     @Override
     public String toString() {
         return this.menu;
