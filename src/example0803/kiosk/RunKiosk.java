@@ -10,17 +10,18 @@ public class RunKiosk {
     private static final String MENU_MSG = "메뉴 또는 주문을 입력해주세요";
     private static final String INVALID_SERVICE_MSG = "없는 주문 서비스 입니다.";
 
+    private static final int KEY_NUM = 3;
+
     public static void main(String[] args) {
 
-        Kiosk kiosk = new Kiosk(storeInventoryCnt());
 
         try {
+            keyNumCheck();
+            Kiosk kiosk = new Kiosk(storeInventoryCnt());
+
             while (true) {
-
                 String type = orderType();
-
                 getUserMenus(kiosk);
-
                 if(!kiosk.isInventory(kiosk.getMenusSize())){
                     break;
                 }
@@ -45,6 +46,13 @@ public class RunKiosk {
          } catch(CustomException e){
             System.out.println(e.getMessage());
          }
+    }
+
+    private static void keyNumCheck() throws CustomException {
+        System.out.println("키를 입력해주세요.");
+        if(!(sc.nextInt() == KEY_NUM)){
+            throw new CustomException("키가 틀렸습니다.",104);
+        }
     }
 
     private static <T> void checkData(Order order) {
