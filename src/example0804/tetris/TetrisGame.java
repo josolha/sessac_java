@@ -43,7 +43,7 @@ public class TetrisGame {
         return sc.nextInt();
     }
     private int linePutNum(int makeNumber){
-        System.out.println(makeNumber +" 블록이 들어갈 라인의 번호를 입력하세요");
+        System.out.println("\""+makeNumber+"\"" +" 블록이 들어갈 라인의 번호를 입력하세요");
         return sc.nextInt();
     }
     private int makeNumber(int lineCnt){
