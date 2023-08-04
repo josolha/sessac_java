@@ -5,10 +5,6 @@ import java.util.*;
 public class RunKiosk {
 
     static Scanner sc = new Scanner(System.in);
-    private static final String INVENTORY_MSG = "매장 재고개수를 입력해주세요";
-    private static final String ORDER_TYPE_MSG = "1.배달 2.포장 3.매장 주문방식 번호를 입력해주세요";
-    private static final String MENU_MSG = "메뉴 또는 주문을 입력해주세요";
-    private static final String INVALID_SERVICE_MSG = "없는 주문 서비스 입니다.";
 
     private static final int KEY_NUM = 3;
 
@@ -27,7 +23,7 @@ public class RunKiosk {
                 }
                 Order orderService =kiosk.initOrder(type);
                 if(orderService ==null){
-                    System.out.println(INVALID_SERVICE_MSG);
+                    System.out.println(Message.INVALID_SERVICE_MSG);
                     break;
                 }
                 handleOrderType(type,orderService);
@@ -143,7 +139,7 @@ public class RunKiosk {
     private static void getUserMenus(Kiosk kiosk) throws CustomException {
 
         while(true){
-            System.out.println(MENU_MSG);
+            System.out.println(Message.MENU_MSG);
             String menu = sc.next();
             if(menu.equals("주문")) break;
             if(kiosk.getMenusSize()==10){
@@ -156,7 +152,7 @@ public class RunKiosk {
     }
 
     private static String orderType() {
-        System.out.println(ORDER_TYPE_MSG);
+        System.out.println(Message.ORDER_TYPE_MSG);
 
         Map<Integer, String> orderType = new HashMap<>();
         orderType.put(1, "Delivery");
@@ -169,7 +165,7 @@ public class RunKiosk {
     }
 
     private static int storeInventoryCnt() {
-        System.out.println(INVENTORY_MSG);
+        System.out.println(Message.INVENTORY_MSG);
         return sc.nextInt();
     }
 }
