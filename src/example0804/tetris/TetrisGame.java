@@ -21,7 +21,7 @@ public class TetrisGame {
         init();
         game();
      }
-     public void game(){
+     private void game(){
          boolean flag =true;
          while(flag){
              int randomNum =makeNumber(board.getLineCnt());
@@ -33,24 +33,24 @@ public class TetrisGame {
          }
      }
 
-    public void init() {
+    private void init() {
         this.board = new Board(lineSize());
         board.makeBoard();
         board.printBoard();
     }
-    public int lineSize(){
+    private int lineSize(){
         System.out.println("블록이 들어갈 라인의 개수를 입력하세요");
         return sc.nextInt();
     }
-    public int linePutNum(int makeNumber){
+    private int linePutNum(int makeNumber){
         System.out.println(makeNumber +" 블록이 들어갈 라인의 번호를 입력하세요");
         return sc.nextInt();
     }
-    public int makeNumber(int lineCnt){
+    private int makeNumber(int lineCnt){
         return random.nextInt(lineCnt * 2) + 1;
     }
 
-    public boolean checkMax(){
+    private boolean checkMax(){
         for (int i = 0; i < board.getLineCnt(); i++) {
             if(board.getMap().get(i).size() == MAX_SIZE){
                 System.out.println(userTry+"회 만에"+i+" 라인이 꽉찼습니다.");
@@ -59,7 +59,7 @@ public class TetrisGame {
         }
         return true;
     }
-    public void removeCoupleNum(int userNum,int randomNum ){
+    private void removeCoupleNum(int userNum,int randomNum ){
         if(!board.getMap().get(userNum).empty() && board.getMap().get(userNum).peek() == randomNum){
             board.getMap().get(userNum).pop();
         }
