@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface OnTakeout {
     void successTakeout(int time, List<Menu> menu);
+
+    void orderTakeoutWait(int time, List<Menu> menu);
 }

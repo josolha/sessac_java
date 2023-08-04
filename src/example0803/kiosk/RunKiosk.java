@@ -31,10 +31,16 @@ public class RunKiosk {
                 }
                 handleOrderType(type,orderService);
                 kiosk.subInventory(kiosk.getMenusSize());
-                checkData(orderService);
-                kiosk.clearMenuList();
 
-                System.out.println(kiosk.toString());
+                kiosk.orderWating.add(orderService);
+                kiosk.printWaitOver();
+
+                //  FOR CHECK
+                kiosk.orderWaitStatus();
+                checkData(orderService);
+                //
+
+                kiosk.clearMenuList();
              }
          } catch(CustomException e){
             System.out.println(e.getMessage());
@@ -43,7 +49,7 @@ public class RunKiosk {
 
     private static <T> void checkData(Order order) {
         //Data체킹
-        System.out.println("\n=========Data Check==========");
+        System.out.println("\n=========DATA CHECK==========");
         System.out.println("주문음료 = " + order.orderMenu.toString());
         System.out.println("총 주문가격 = " + order.getTotalPrice());
         System.out.println("=============================\n");
@@ -86,6 +92,7 @@ public class RunKiosk {
                              + (getPrice - orderService.getTotalPrice())
                              + "원 입니다.");
             ((TakeoutOrder) orderService).successTakeout();
+
         }else{
             System.out.println("금액이 부족합니다.");
         }

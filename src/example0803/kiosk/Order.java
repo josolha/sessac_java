@@ -31,4 +31,6 @@ public abstract class Order {
         return orderMenu;
     }
 
+    abstract void outOrder();
+
 }

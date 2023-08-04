@@ -1,12 +1,13 @@
 package example0803.kiosk;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Kiosk implements OnHere, OnTakeout, OnDelivery {
-    protected Deque<String> orderWating = new LinkedList<>();
+    public Deque<Order> orderWating = new LinkedList<>();
     private int inventory;
     private static final int MAX_ORDER_WAIT_COUNT = 3;
 
@@ -53,32 +54,54 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     @Override
     public void successHere(int orderNum, List<Menu> menu) {
         System.out.print(orderNum+" 주문번호로 "+ menu.toString().replace("[","").replace("]","") +" 주문 완료 되었습니다");
-        checkWaiting("매장 :"+ orderNum + " 번호 주문 메뉴 나왔습니다.");
+    }
+
+    @Override
+    public void orderHereWait(int orderNum, List<Menu> menu) {
+        System.out.println(
+                "\n------------------------" +
+                "\n주문하신 "+ menu.size() +"메뉴 " +
+                "\n매장 :"+ orderNum + " 번호 주문 메뉴 나왔습니다."+
+                "\n------------------------ ");
     }
     @Override
     public void successDelivery(String locate, List<Menu> menu ) {
         System.out.println(locate+" 주소로 "+menu.toString().replace("[","").replace("]","")+" 배달 주문이 완료했습니다.");
-        checkWaiting("배달 :" + locate+" 주소로 배달이 시작되었습니다.");
+
+    }
+    @Override
+    public void orderDeliveryWait(String locate, List<Menu> menu) {
+        System.out.println(
+                    "\n------------------------" +
+                    "\n주문하신 "+ menu.size() +"메뉴 " +
+                    "\n배달 :" + locate+" 주소로 배달이 시작되었습니다."+
+                    "\n------------------------ ");
     }
     @Override
     public void successTakeout(int time, List<Menu> menu) {
         System.out.println(time+" 분뒤 "+menu.toString().replace("[","").replace("]","")+" 포장주문 완료되었습니다.");
-        checkWaiting("포장 : 포장 주문 하신 메뉴 나왔습니다.");
     }
-    public void checkWaiting(String message){
+    @Override
+    public void orderTakeoutWait(int time, List<Menu> menu) {
+        System.out.println(
+                "\n------------------------" +
+                "\n주문하신 "+ menu.size() +"메뉴 " +
+                "\n포장 : 포장 주문 하신 메뉴 나왔습니다."+
+                "\n------------------------ ");
+    }
+     public void printWaitOver(){
         if(orderWating.size() == MAX_ORDER_WAIT_COUNT){
-            orderWating.poll();
+            Order orderSerive = orderWating.pollFirst();
+            orderSerive.outOrder();
         }
-        orderWating.add(message);
+    }
+    public void orderWaitStatus(){
+        System.out.println("=======ORDER WAIT CHECK=======");
+        for (Order order: orderWating) {
+             order.outOrder();
+        }
+        System.out.println("=============================");
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (String order : orderWating) {
-            sb.append(order).append("\n");
-        }
-        return sb.toString();
-    }
 }
 

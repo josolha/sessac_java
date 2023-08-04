@@ -20,6 +20,11 @@ public class TakeoutOrder extends Order {
         super.calculateTotalPrice();
         super.totalPrice -= TAKEOUT_FEE;
     }
+    @Override
+    void outOrder() {
+        onTakeout.orderTakeoutWait(this.time,super.orderMenu);
+    }
+
 
     @Override
     boolean runOrder(int paymentAmount) {

@@ -19,6 +19,7 @@ public class HereOrder extends Order {
         super.calculateTotalPrice();
     }
 
+
     @Override
     boolean runOrder(int paymentAmount) {
         return paymentAmount >= super.totalPrice;
@@ -28,7 +29,10 @@ public class HereOrder extends Order {
         this.orderNum = orderNum;
     }
 
-
+    @Override
+    void outOrder() {
+        onHere.orderHereWait(this.orderNum,super.orderMenu);
+    }
    public int getOrderNum() {
         return orderNum;
     }

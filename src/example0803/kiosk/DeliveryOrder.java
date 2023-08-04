@@ -24,6 +24,11 @@ public class DeliveryOrder extends Order {
         return paymentAmount == super.getTotalPrice();
     }
 
+    @Override
+    void outOrder() {
+        onDelivery.orderDeliveryWait(this.locate,super.orderMenu);
+    }
+
     public String getLocate() {
         return locate;
     }
