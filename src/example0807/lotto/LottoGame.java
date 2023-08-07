@@ -30,8 +30,10 @@ public class LottoGame {
             //checkRank(intersection.size());
 
             //체크
+            System.out.println("==========================");
             System.out.println("로또 번호 : "+computerNumber);
             System.out.println("  내 번호 : "+playerNumber.getUserNumber());
+            System.out.println("==========================");
             tryNum--;
         }
     }
