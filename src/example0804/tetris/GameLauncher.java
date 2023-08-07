@@ -4,5 +4,6 @@ public class GameLauncher {
     public static void main(String[] args) {
         TetrisGame tetrisGame = new TetrisGame();
         tetrisGame.play();
+
     }
 }

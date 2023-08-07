@@ -1,7 +1,5 @@
 package example0804.tetris;
 
-import example0801.CardGame_refactor.ComputerPlayer;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,10 +21,11 @@ public class TetrisGame {
      }
      private void game(){
          boolean flag =true;
+
          while(flag){
              int randomNum =makeNumber(board.getLineCnt());
              int userNum = linePutNum(randomNum);
-             removeCoupleNum(userNum,randomNum);
+             removeOrAdd(userNum,randomNum);
              userTry++;
              flag = checkMax();
              board.printBoard();
@@ -53,18 +52,18 @@ public class TetrisGame {
     private boolean checkMax(){
         for (int i = 0; i < board.getLineCnt(); i++) {
             if(board.getMap().get(i).size() == MAX_SIZE){
-                System.out.println(userTry+"회 만에"+i+" 라인이 꽉찼습니다.");
+                System.out.println(userTry+"회 만에 "+i+" 라인이 꽉찼습니다.");
                 return false;
             }
         }
         return true;
     }
-    private void removeCoupleNum(int userNum,int randomNum ){
+    private void removeOrAdd(int userNum, int randomNum ){
         if(!board.getMap().get(userNum).empty() && board.getMap().get(userNum).peek() == randomNum){
             board.getMap().get(userNum).pop();
         }
         else{
-            board.getMap().get(userNum).add(randomNum);
+            board.getMap().get(userNum).push(randomNum);
         }
     }
 }

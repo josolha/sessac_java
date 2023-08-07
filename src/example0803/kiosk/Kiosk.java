@@ -8,6 +8,9 @@ import java.util.List;
 
 public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     public Deque<Order> orderWating = new LinkedList<>();
+
+    //메뉴  이름 , 가격
+    //메뉴  이름 , 재고개수
     private int inventory;
     private static final int MAX_ORDER_WAIT_COUNT = 3;
 
