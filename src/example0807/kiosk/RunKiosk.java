@@ -14,51 +14,25 @@ public class RunKiosk {
 
 
         try {
-            keyNumCheck();
+            vaildateKey();
             Kiosk kiosk = new Kiosk(storeInventoryCnt());
-
             while (true) {
                 String type = orderType();
-//                getUserMenus(kiosk);
-                String menu;
-                int cnt =0;
-
-                while(true){
-                    Message.MENU_MSG.printMessage();
-                    menu = sc.next();
-                    if(menu.equals("주문")){
-                        break;
-                    }
-                    cnt = sc.nextInt();
-                    kiosk.addMenus(menu,cnt);
-                    kiosk.isInventory(menu,cnt);
-                    kiosk.subInventory(menu,cnt);
-                }
-
+                getMenus(kiosk);
                 Order orderService =kiosk.initOrder(type);
                 if(orderService ==null){
                     Message.INVALID_SERVICE_MSG.printMessage();
                     break;
                 }
                 handleOrderType(type,orderService);
+                //kiosk.orderWating.add(orderService);
+                //kiosk.printWaitOver();
+                kiosk.subInventory();
+                nowStatus(kiosk);
 
-                kiosk.orderWating.add(orderService);
-                kiosk.printWaitOver();
-
-                System.out.println("\n주문 내역-------------");
-                System.out.println(kiosk.getMenuList());
-                System.out.println("--------------------");
-
-                System.out.print("현재 재고상황 :");
-                for(String k : kiosk.getMenuAndCnt().keySet()){
-                    System.out.print(k+"="+kiosk.getMenuAndCnt().get(k)+" ");
-                }
-                System.out.println("\n--------------------");
-//                //  FOR CHECK
-//                kiosk.orderWaitStatus();
-//                checkData(orderService);
-//                //
-
+                //  =========FOR CHECK=========
+                //  kiosk.orderWaitStatus();
+                checkData(orderService,kiosk);
                 kiosk.clearMenuList();
              }
          } catch(CustomException e){
@@ -66,18 +40,53 @@ public class RunKiosk {
          }
     }
 
-    private static void keyNumCheck() throws CustomException {
+    private static void getMenus(Kiosk kiosk) throws CustomException {
+        while (true) {
+            Message.MENU_MSG.printMessage();
+            String menu = sc.next();
+            if (menu.equals("주문")) {
+                break;
+            }
+            int cnt = sc.nextInt();
+            if (!kiosk.menuAndPrice.containsKey(menu)) {
+                System.out.println("메뉴가 없습니다. 다시 입력해주세요.");
+                continue;
+            }
+            if (!kiosk.isInventory(menu, cnt)) {
+                System.out.println("재고가 부족합니다. 다른 메뉴를 선택하거나 수량을 줄여주세요.");
+                continue;
+            }
+            kiosk.addMenus(menu, cnt);
+        }
+    }
+
+    private static void nowStatus(Kiosk kiosk){
+        System.out.println("\n주문 내역-------------");
+        System.out.println(kiosk.getMenuList().toString().replace("[", "").replace("]", ""));
+
+        System.out.println("--------------------");
+        System.out.print("현재 재고상황 : {");
+        for(String k : kiosk.getMenuAndCnt().keySet()){
+            System.out.print(k+"="+kiosk.getMenuAndCnt().get(k)+" ");
+        }
+        System.out.println("}\n--------------------");
+    }
+
+    private static void vaildateKey() throws CustomException {
         System.out.println("키를 입력해주세요.");
         if(!(sc.nextInt() == KEY_NUM)){
             throw new CustomException("키가 틀렸습니다.",104);
         }
     }
 
-    private static <T> void checkData(Order order) {
+    private static <T> void checkData(Order order, Kiosk kiosk) {
         //Data체킹
         System.out.println("\n=========DATA CHECK==========");
-        System.out.println("주문음료 = " + order.orderMenu.toString());
-        System.out.println("총 주문가격 = " + order.getTotalPrice());
+        System.out.println("order의 주문음료 = " + order.orderMenu.toString());
+        System.out.println("order의 총 주문가격 = " + order.getTotalPrice());
+        for (Menu s : kiosk.getMenuList() ) {
+            System.out.println("menu의 메뉴 = "+s.getMenu()+" "+s.getCnt()+"개, 가격 ="+s.totalPrice);
+        }
         System.out.println("=============================\n");
     }
 
@@ -158,21 +167,6 @@ public class RunKiosk {
         }
     }
 
-//    private static void getUserMenus(Kiosk kiosk) throws CustomException {
-//
-//        while(true){
-//            Message.MENU_MSG.printMessage();
-//            String menu = sc.next();
-//            if(menu.equals("주문")) break;
-//            if(kiosk.getMenusSize()==10){
-//                System.out.println("최대 10개까지 주문 가능합니다.");
-//                break;
-//            }
-//            int cnt = sc.nextInt();
-//            kiosk.addMenus(menu,cnt);
-//            kiosk.isInventory(menu,cnt);
-//        }
-//    }
 
     private static String orderType() {
         Message.ORDER_TYPE_MSG.printMessage();

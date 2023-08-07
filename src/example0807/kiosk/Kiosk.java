@@ -11,10 +11,6 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     //메뉴  이름 , 재고개수
     public Map<String,Integer> menuAndCnt = new HashMap<>();
 
-    public Map<String, Integer> getMenuAndCnt() {
-        return menuAndCnt;
-    }
-
     private static final int MAX_ORDER_WAIT_COUNT = 3;
 
 
@@ -31,7 +27,7 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
             menuAndCnt.put(k,inventory);
         }
     }
-    public void addMenus(String menuName,int cnt) throws CustomException {
+    public void addMenus(String menuName,int cnt) {
         //메뉴이름, 가격, 개수
         int price = menuAndPrice.get(menuName);
         menuList.add(new Menu(menuName,price,cnt));
@@ -59,14 +55,18 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
         this.menuList.clear();
     }
 
-    public boolean isInventory(String menuName, int cnt) throws CustomException {
+    public boolean isInventory(String menuName, int cnt) {
         if(menuAndCnt.get(menuName) < cnt){
-         throw new CustomException("재고가 부족합니다",102);
+         return false;
         }
         return true;
     }
-    public void subInventory(String menuName, int cnt) {
-        menuAndCnt.replace(menuName,menuAndCnt.get(menuName)-cnt);
+    public void subInventory() {
+        for (Menu menu : menuList) {
+            String menuName = menu.getMenu();
+            int cnt = menu.getCnt();
+            menuAndCnt.replace(menuName, menuAndCnt.get(menuName) - cnt);
+        }
     }
 
     @Override
@@ -119,6 +119,9 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
              order.outOrder();
         }
         System.out.println("=============================");
+    }
+    public Map<String, Integer> getMenuAndCnt() {
+        return menuAndCnt;
     }
 
 }
