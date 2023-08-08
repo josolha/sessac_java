@@ -20,7 +20,6 @@ public class Menu {
         return this.menu + this.cnt+"개";
     }
 
-
     public String getMenu() {
         return menu;
     }

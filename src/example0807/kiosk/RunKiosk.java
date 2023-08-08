@@ -25,14 +25,14 @@ public class RunKiosk {
                     break;
                 }
                 handleOrderType(type,orderService);
-                //kiosk.orderWating.add(orderService);
-                //kiosk.printWaitOver();
+                kiosk.orderWating.add(orderService);
+                kiosk.printWaitOver();
                 kiosk.subInventory();
                 nowStatus(kiosk);
 
                 //  =========FOR CHECK=========
-                //  kiosk.orderWaitStatus();
-                checkData(orderService,kiosk);
+                kiosk.orderWaitStatus();
+                //checkData(orderService,kiosk);
                 kiosk.clearMenuList();
              }
          } catch(CustomException e){
@@ -41,6 +41,7 @@ public class RunKiosk {
     }
 
     private static void getMenus(Kiosk kiosk) throws CustomException {
+        kiosk.clearMenuList();
         while (true) {
             Message.MENU_MSG.printMessage();
             String menu = sc.next();

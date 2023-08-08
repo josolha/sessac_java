@@ -13,8 +13,7 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
 
     private static final int MAX_ORDER_WAIT_COUNT = 3;
 
-
-    private List<Menu> menuList = new ArrayList<>();
+    private List<Menu> menuList;
 
     public Kiosk(int inventory) {
         menuAndPrice = new HashMap<>();
@@ -52,7 +51,7 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     }
 
     public void clearMenuList() {
-        this.menuList.clear();
+        menuList = new ArrayList<>();
     }
 
     public boolean isInventory(String menuName, int cnt) {
@@ -76,9 +75,13 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
 
     @Override
     public void orderHereWait(int orderNum, List<Menu> menu) {
+        int cnt = 0;
+        for (Menu menus : menu) {
+            cnt += menus.getCnt();
+        }
         System.out.println(
                 "\n------------------------" +
-                "\n주문하신 "+ menu.size() +"메뉴 " +
+                "\n주문하신 "+cnt +"개 메뉴 " +
                 "\n매장 :"+ orderNum + " 번호 주문 메뉴 나왔습니다."+
                 "\n------------------------ ");
     }
@@ -89,9 +92,13 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     }
     @Override
     public void orderDeliveryWait(String locate, List<Menu> menu) {
+        int cnt = 0;
+        for (Menu menus : menu) {
+            cnt += menus.getCnt();
+        }
         System.out.println(
                     "\n------------------------" +
-                    "\n주문하신 "+ menu.size() +"메뉴 " +
+                    "\n주문하신 "+cnt +"개 메뉴 " +
                     "\n배달 :" + locate+" 주소로 배달이 시작되었습니다."+
                     "\n------------------------ ");
     }
@@ -101,10 +108,14 @@ public class Kiosk implements OnHere, OnTakeout, OnDelivery {
     }
     @Override
     public void orderTakeoutWait(int time, List<Menu> menu) {
+        int cnt = 0;
+        for (Menu menus : menu) {
+            cnt += menus.getCnt();
+        }
         System.out.println(
                 "\n------------------------" +
-                "\n주문하신 "+ menu.size() +"메뉴 " +
-                "\n포장 : "+time+"이 지나 포장 주문 하신 메뉴 나왔습니다."+
+                "\n주문하신 "+cnt +"개 메뉴 " +
+                "\n포장 : "+time+"분이 지나 포장 주문 하신 메뉴 나왔습니다."+
                 "\n------------------------ ");
     }
      public void printWaitOver(){
