@@ -14,6 +14,4 @@ public class PokemonGym extends PokemonCenter {
         System.out.println("야생의 "+this.apperPokemon+"가 나타났다!");
         return pokemon;
     }
-
-
 }

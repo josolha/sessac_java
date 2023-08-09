@@ -54,11 +54,9 @@ public class PokemonCenter {
     }
     public void match(Pokemon myPokemon, Pokemon opponetPokemon){
         System.out.println(opponetPokemon);
-
         Pokemon attacker = chooseFirstAttack(myPokemon, opponetPokemon);
         Pokemon defender = (attacker == myPokemon) ? opponetPokemon : myPokemon;
 //        System.out.println(attacker.getName()+"먼저 공격!!");
-
         while(checkHpStatus(myPokemon,opponetPokemon)) {
             attack(attacker, defender);
             Pokemon temp = attacker;
