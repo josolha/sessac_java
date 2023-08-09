@@ -12,12 +12,13 @@ public class RunKiosk {
 
     public static void main(String[] args) {
 
+        Thread thread = null;
 
         try {
             vaildateKey();
             Kiosk kiosk = new Kiosk(storeInventoryCnt());
 
-            Thread thread = new Thread(new Runnable() {
+            thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while(true){
@@ -56,7 +57,11 @@ public class RunKiosk {
              }
          } catch(CustomException e){
             System.out.println(e.getMessage());
-         }
+         } finally {
+            if(thread != null && thread.isAlive()) {
+                thread.interrupt();
+            }
+        }
     }
 
     private static void getMenus(Kiosk kiosk) throws CustomException {
