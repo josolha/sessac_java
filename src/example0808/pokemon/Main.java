@@ -55,7 +55,6 @@ public class Main {
         String[] pkType = {"물","불","풀","풀","물","불"};
         int[][] pkStat ={{250,90,90}, {150,120,90}, {200,100,90}, {150,80,80}, {160,80,80}, {150,90,100}};
 
-        //1.아카이브 생성
         PokemonArchive PokeArch = new PokemonArchive();
         PokeArch.makePokemonStat(pkStat,pks,pkType);
         PokeArch.makeSkillNameToPower(skills,skillPower);
