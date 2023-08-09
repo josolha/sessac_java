@@ -3,14 +3,13 @@ package example0808.pokemon;
 import java.util.Map;
 
 public class Pokemon {
-
-
     private String name;
     private int hpStatus;
 
     private Map<String,String> statMap;
 
     private Map<String,Integer> skillMap;
+
 
     public Pokemon(String name) {
         this.name = name;
@@ -25,10 +24,33 @@ public class Pokemon {
     }
     @Override
     public String toString() {
-        return name +"의 상태입니다.\n"+
-                     "현재 채력 " + hpStatus + "\n"+
-                     "능력창 " + statMap + "\n"+
-                     "스킬창 " + skillMap;
+        return       "=============INFORMATION============\n"+
+                     "이름 : " + name + "\n"+
+                     "현재 체력 : " + hpStatus + "\n"+
+                     "능력 : " + statMap + "\n"+
+                     "스킬 : " + skillMap + "\n"+
+                     "===================================";
     }
+    public String getName() {
+        return name;
+    }
+
+    public int getHpStatus() {
+        return hpStatus;
+    }
+
+    public void setHpStatus(int hpStatus) {
+        this.hpStatus = hpStatus;
+    }
+
+    public Map<String, String> getStatMap() {
+        return statMap;
+    }
+
+    public Map<String, Integer> getSkillMap() {
+        return skillMap;
+    }
+
+
 }
 
