@@ -21,13 +21,13 @@ public class RunKiosk {
             thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while(true){
-                        try{
+                    while (true) {
+                        try {
                             Thread.sleep(5000);
-                        }catch (InterruptedException e){
+                        } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(!kiosk.orderWating.isEmpty()){
+                        if (!kiosk.orderWating.isEmpty()) {
                             Order orderService = kiosk.orderWating.poll();
                             orderService.outOrder();
                         }
@@ -57,6 +57,7 @@ public class RunKiosk {
              }
          } catch(CustomException e){
             System.out.println(e.getMessage());
+
          } finally {
             if(thread != null && thread.isAlive()) {
                 thread.interrupt();
