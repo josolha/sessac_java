@@ -48,9 +48,6 @@ public class OTTArchive {
             mediaM.put(media[0], mdm);
             ((List<String>) contentM.get(media[3]).get("medias")).add(media[0]);
         }
-
-        System.out.println(contentM.toString());
-        System.out.println(mediaM.toString());
     }
 
     private List<String[]> readContentBase() {
@@ -131,5 +128,13 @@ public class OTTArchive {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Map<String, Map<String, Object>> getContentM() {
+        return contentM;
+    }
+
+    public Map<String, Map<String, String>> getMediaM() {
+        return mediaM;
     }
 }
